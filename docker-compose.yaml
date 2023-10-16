@@ -1,0 +1,34 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=sa'
+      - 'MYSQL_PASSWORD=admin'
+      - 'MYSQL_ROOT_PASSWORD=admin'
+      - 'MYSQL_USER=admin'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'root-mysql:/var/lib/mysql'
+    networks:
+      - root
+
+  phpmyadmin:
+    platform: linux/amd64
+    depends_on:
+        - mysql
+    image: phpmyadmin/phpmyadmin
+    environment:
+        - PMA_HOST=mysql
+        - PMA_PORT=3306
+    networks:
+        - root
+    ports:
+        - 9001:80
+
+networks:
+    root:
+        driver: bridge
+volumes:
+    root-mysql:
+        driver: local
