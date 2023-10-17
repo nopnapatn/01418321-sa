@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ku.cs.sa.models.User;
+import ku.cs.sa.models.SignupRequest;
 import ku.cs.sa.services.AuthService;
 
 @Controller
@@ -25,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signupUser(@ModelAttribute User user, Model model) {
+    public String signupUser(@ModelAttribute SignupRequest user, Model model) {
         if (authService.isUsernameAvaliable(user.getUsername())) {
             authService.createUser(user);
             model.addAttribute("signupSuccess", true);

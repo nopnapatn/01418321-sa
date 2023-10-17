@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import ku.cs.sa.models.User;
+import ku.cs.sa.Entities.User;
 import ku.cs.sa.repositories.UserRepository;
 
 @Service
